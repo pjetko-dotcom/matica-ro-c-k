@@ -167,3 +167,28 @@ git push
 - [ ] Print režim
 - [ ] Multi-language (SK/CZ/EN)
 
+## ⚠️ IMPORTANT - Git Workflow
+
+### Default Branch
+- **Main branch** je DEFAULT (`main`)
+- Nikdy **nemaž lokálne súbory** pri switchovaní medzi branchmi!
+- Vždy použi `git checkout` bez mazania súborov v normálnom workflow
+
+### GitHub Pages Deployment
+- `main` branch = zdrojný kód (index.html, App.tsx, docs/, package.json)
+- `gh-pages` branch = production build (iba index.html, assets/ z dist/)
+- **NIKDY necopy dist/* do root** - to zmaže všetky súbory projektu!
+
+### Ako správne deployovať:
+```bash
+# 1. Rób zmeny v main
+git checkout main
+npm run build
+git add .
+git commit -m "feat: ..."
+git push origin main
+
+# 2. Potom deploy na gh-pages
+git subtree push --prefix dist origin gh-pages
+```
+
