@@ -34,7 +34,7 @@ npm run dev
 
 ---
 
-## 📁 Struktura Dokumentácie
+## 📁 Štruktúra Dokumentácie
 
 | Súbor | Určenie |
 |-------|---------|
@@ -59,7 +59,7 @@ npm run build         # Skompiluj na dist/
 npm run preview       # Preview production build
 
 # Git
-git checkout main     # Prepni na main vetev
+git checkout main     # Prepni na main vetvu
 npm run build         # Build pred deployom
 git add .
 git commit -m "Feature"
