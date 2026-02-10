@@ -23,17 +23,14 @@
 
 ## Rýchly Start
 
-**Требования:** Node.js 18+
+**Požiadavky:** Node.js 18+
 
-```bash
-# Inštalácia
+```cmd
 npm install
 
-# Vývoj (localhost:3000)
 npm run dev
 
-# Build
 npm run build
 ```
 
-Detajly v [DEVELOPMENT.md](docs/DEVELOPMENT.md) a [DEPLOYMENT.md](docs/DEPLOYMENT.md).
+Detaily v [DEVELOPMENT.md](docs/DEVELOPMENT.md) a [DEPLOYMENT.md](docs/DEPLOYMENT.md).
