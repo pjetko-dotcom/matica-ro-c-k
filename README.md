@@ -1,20 +1,39 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Matica RO(C)K 🪨
 
-# Run and deploy your AI Studio app
+**Scout Staff Timetable Planner** - aplikácia na plánovanie denného harmonogramu pre skautských vedúcich.
 
-This contains everything you need to run your app locally.
+**Live Demo:** https://pjetko-dotcom.github.io/matica-ro-c-k/
 
-View your app in AI Studio: https://ai.studio/apps/drive/1uVP3w1A8pLvyeyPoJVkxkqHK7U-i33zM
+## Funkcionality
 
-## Run Locally
+✅ Plánovanie dní s aktivitami (Prednáška, Program, Jedlo, Ostatné)  
+✅ Správa časov a trvania aktivít  
+✅ Prírodný design s listočkami a kameňom 🍃  
+✅ Dark Mode prvou triedou  
+✅ Lokálne uloženie (localStorage)  
+✅ Cloud synchronizácia (KVDB)
 
-**Prerequisites:**  Node.js
+## Technológie
 
+- **React 19.2.4** - Frontend framework
+- **TypeScript 5.8.2** - Type safety
+- **Vite 6.2.0** - Build tool
+- **Tailwind CSS** - Styling
+- **Font Awesome 6.4.0** - Ikony
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Rýchly Start
+
+**Требования:** Node.js 18+
+
+```bash
+# Inštalácia
+npm install
+
+# Vývoj (localhost:3000)
+npm run dev
+
+# Build
+npm run build
+```
+
+Detajly v [DEVELOPMENT.md](docs/DEVELOPMENT.md) a [DEPLOYMENT.md](docs/DEPLOYMENT.md).
