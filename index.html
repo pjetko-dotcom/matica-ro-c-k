@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Matica RO(C)K | Scout Staff</title>
+  <script>
+    // Tailwind Dark Mode config
+    if (localStorage.getItem('scout_dark_mode') === 'true' || (!localStorage.getItem('scout_dark_mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,100..900;1,100..900&display=swap');
+    
+    :root {
+      --nature-green: #2d5a27;
+      --nature-brown: #5d4037;
+      --nature-blue: #1565c0;
+      --nature-gray: #455a64;
+      color-scheme: light;
+    }
+
+    html.dark {
+      color-scheme: dark;
+    }
+
+    body {
+      font-family: 'Georama', sans-serif;
+      background-color: #d9e8d6;
+      /* Organic wavy nature pattern */
+      background-image: 
+        radial-gradient(at 0% 100%, hsla(120, 15%, 80%, 1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(200, 25%, 85%, 1) 0, transparent 50%), 
+        radial-gradient(at 50% 50%, hsla(30, 10%, 90%, 1) 0, transparent 50%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.04'%3E%3Cpath d='M20,50 Q25,40 30,50 Q28,60 20,55 Z' fill='%232d5a27'/%3E%3Cpath d='M80,80 Q90,60 100,80 Q95,100 80,90 Z' fill='%232d5a27'/%3E%3Cpath d='M150,30 Q160,10 170,30 Q165,50 150,40 Z' fill='%232d5a27'/%3E%3Cpath d='M250,120 Q265,100 280,120 Q270,145 250,135 Z' fill='%232d5a27'/%3E%3Cpath d='M320,60 Q335,40 350,60 Q340,85 320,75 Z' fill='%232d5a27'/%3E%3Cpath d='M100,150 Q115,140 128,150 Q120,170 100,165 Z' fill='%232d5a27'/%3E%3Cpath d='M280,170 Q295,160 310,170 Q300,185 280,180 Z' fill='%232d5a27'/%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    html.dark body {
+      background-color: #0d1711;
+      background-image: 
+        radial-gradient(at 0% 100%, hsla(120, 20%, 25%, 1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(200, 20%, 30%, 1) 0, transparent 50%), 
+        radial-gradient(at 50% 50%, hsla(30, 15%, 20%, 1) 0, transparent 50%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.06'%3E%3Cpath d='M20,50 Q25,40 30,50 Q28,60 20,55 Z' fill='%23b8e5b8'/%3E%3Cpath d='M80,80 Q90,60 100,80 Q95,100 80,90 Z' fill='%23b8e5b8'/%3E%3Cpath d='M150,30 Q160,10 170,30 Q165,50 150,40 Z' fill='%23b8e5b8'/%3E%3Cpath d='M250,120 Q265,100 280,120 Q270,145 250,135 Z' fill='%23b8e5b8'/%3E%3Cpath d='M320,60 Q335,40 350,60 Q340,85 320,75 Z' fill='%23b8e5b8'/%3E%3Cpath d='M100,150 Q115,140 128,150 Q120,170 100,165 Z' fill='%23b8e5b8'/%3E%3Cpath d='M280,170 Q295,160 310,170 Q300,185 280,180 Z' fill='%23b8e5b8'/%3E%3C/g%3E%3C/svg%3E");
+      color: #e0e8e0;
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    }
+
+    html.dark .glass-effect {
+      background: rgba(20, 40, 25, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 2px solid rgba(184, 229, 184, 0.3);
+    }
+
+    /* Dark mode text and element colors */
+    html.dark .text-stone-900,
+    html.dark .text-stone-800,
+    html.dark .text-stone-700 {
+      color: #e0e8e0 !important;
+    }
+
+    html.dark .bg-white,
+    html.dark .bg-stone-50,
+    html.dark .bg-stone-100,
+    html.dark .bg-stone-200,
+    html.dark .bg-stone-100\/60,
+    html.dark .bg-stone-100\/50 {
+      background-color: #1f2b23 !important;
+      color: #e0e8e0 !important;
+    }
+
+    html.dark .border-stone-50,
+    html.dark .border-stone-100,
+    html.dark .border-stone-200,
+    html.dark .border-stone-300,
+    html.dark .border-stone-500,
+    html.dark .border-stone-800 {
+      border-color: #3a4a3f !important;
+    }
+
+    html.dark input,
+    html.dark textarea {
+      background-color: #1f2b23 !important;
+      color: #e0e8e0 !important;
+      border-color: #3a4a3f !important;
+    }
+
+    html.dark input:focus,
+    html.dark textarea:focus {
+      background-color: #2a3a2f !important;
+      border-color: #7ec97e !important;
+    }
+
+    html.dark .text-stone-800 {
+      color: #d0d8d0 !important;
+    }
+
+    html.dark button {
+      color: inherit;
+    }
+
+    html.dark .text-stone-300 {
+      color: #a0a8a0 !important;
+    }
+
+    html.dark .text-stone-500 {
+      color: #8a928a !important;
+    }
+
+    /* Dark mode fixes for stone colors on buttons and elements */
+    html.dark button[class*="bg-stone"],
+    html.dark div[class*="bg-stone"] {
+      background-color: #1f2b23 !important;
+    }
+
+    html.dark button[class*="text-stone"],
+    html.dark div[class*="text-stone"] {
+      color: #e0e8e0 !important;
+    }
+
+    html.dark .shadow-sm {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .timeline-line::before {
+      content: '';
+      position: absolute;
+      left: 31px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, #d1d5db, #9ca3af, #d1d5db);
+      border-radius: 10px;
+      z-index: 0;
+    }
+
+    @keyframes leaf-sway {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-8px) rotate(5deg); }
+    }
+
+    .animate-sway {
+      animation: leaf-sway 5s ease-in-out infinite;
+    }
+
+    .rock-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.04'%3E%3Ccircle cx='20' cy='20' r='15' fill='%232d5a27'/%3E%3Ccircle cx='45' cy='35' r='18' fill='%232d5a27'/%3E%3Ccircle cx='15' cy='50' r='12' fill='%232d5a27'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    html.dark .rock-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.08'%3E%3Ccircle cx='20' cy='20' r='15' fill='%23a8d5a8'/%3E%3Ccircle cx='45' cy='35' r='18' fill='%23a8d5a8'/%3E%3Ccircle cx='15' cy='50' r='12' fill='%23a8d5a8'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Fix overlapping text on small screens */
+    .text-balance {
+      text-wrap: balance;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #5d4037;
+      border-radius: 20px;
+    }
+
+    html.dark ::-webkit-scrollbar-thumb {
+      background: #a8d5a8;
+    }
+
+    /* Tailwind dark mode support */
+    html.dark {
+      color-scheme: dark;
+    }
+
+    html.dark * {
+      border-color-opacity: 1;
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+      "react/": "https://esm.sh/react@^19.2.4/",
+      "react": "https://esm.sh/react@^19.2.4"
+    }
+  }
+  </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="rock-pattern">
+  <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
