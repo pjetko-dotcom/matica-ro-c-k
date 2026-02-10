@@ -1,5 +1,32 @@
 # Deployment Guide
 
+## 📝 Standard Development & Deployment Workflow
+
+**Po každých zmenách v kóde sa bude postupovať takto:**
+
+```bash
+# 1. Urob zmeny v App.tsx, components, styles, atď.
+#    (skúsuj lokálne: npm run dev)
+
+# 2. Commitni zmeny
+git add .
+git commit -m "feat: describe your change"
+
+# 3. Build pre production
+npm run build
+
+# 4. Push na GitHub Pages
+git push origin main
+git subtree push --prefix dist origin gh-pages
+
+# Hotovo! Aplikácia je dostupná na:
+# https://pjetko-dotcom.github.io/matica-ro-c-k/
+```
+
+**Pozor:** Nikdy nemaž lokálne súbory pri switchovaní branches! Git to odišť samo (pozri [DEVELOPMENT.md](./DEVELOPMENT.md#-important---git-workflow))
+
+---
+
 ## GitHub Pages Deployment
 
 Aplikácia je nasadená na GitHub Pages na adrese: **https://pjetko-dotcom.github.io/matica-ro-c-k/**
