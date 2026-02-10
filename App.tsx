@@ -362,7 +362,7 @@ const App: React.FC = () => {
                           type="text" value={day.date} 
                           onClick={e => e.stopPropagation()}
                           onChange={e => setDays(prev => prev.map(d => d.id === day.id ? {...d, date: e.target.value} : d))}
-                          className="font-black text-stone-800 text-2xl uppercase bg-transparent outline-none w-full focus:text-emerald-800 transition-colors tracking-normal" 
+                          className="font-black text-stone-800 text-2xl uppercase bg-transparent outline-none w-full focus:text-emerald-800 transition-colors tracking-normal day-name-input" 
                         />
                       </div>
                       <div className="flex items-center gap-2">
