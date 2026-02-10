@@ -38,25 +38,14 @@
     body {
       font-family: 'Georama', sans-serif;
       background-color: #d9e8d6;
-      /* Organic wavy nature pattern */
-      background-image: 
-        radial-gradient(at 0% 100%, hsla(120, 15%, 80%, 1) 0, transparent 50%), 
-        radial-gradient(at 100% 0%, hsla(200, 25%, 85%, 1) 0, transparent 50%), 
-        radial-gradient(at 50% 50%, hsla(30, 10%, 90%, 1) 0, transparent 50%),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.04'%3E%3Cpath d='M20,50 Q25,40 30,50 Q28,60 20,55 Z' fill='%232d5a27'/%3E%3Cpath d='M80,80 Q90,60 100,80 Q95,100 80,90 Z' fill='%232d5a27'/%3E%3Cpath d='M150,30 Q160,10 170,30 Q165,50 150,40 Z' fill='%232d5a27'/%3E%3Cpath d='M250,120 Q265,100 280,120 Q270,145 250,135 Z' fill='%232d5a27'/%3E%3Cpath d='M320,60 Q335,40 350,60 Q340,85 320,75 Z' fill='%232d5a27'/%3E%3Cpath d='M100,150 Q115,140 128,150 Q120,170 100,165 Z' fill='%232d5a27'/%3E%3Cpath d='M280,170 Q295,160 310,170 Q300,185 280,180 Z' fill='%232d5a27'/%3E%3C/g%3E%3C/svg%3E");
-      background-attachment: fixed;
       -webkit-tap-highlight-color: transparent;
       overflow-x: hidden;
       transition: background-color 0.3s, color 0.3s;
+      position: relative;
     }
     
     html.dark body {
-      background-color: #0d1711;
-      background-image: 
-        radial-gradient(at 0% 100%, hsla(120, 20%, 25%, 1) 0, transparent 50%), 
-        radial-gradient(at 100% 0%, hsla(200, 20%, 30%, 1) 0, transparent 50%), 
-        radial-gradient(at 50% 50%, hsla(30, 15%, 20%, 1) 0, transparent 50%),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.06'%3E%3Cpath d='M20,50 Q25,40 30,50 Q28,60 20,55 Z' fill='%23b8e5b8'/%3E%3Cpath d='M80,80 Q90,60 100,80 Q95,100 80,90 Z' fill='%23b8e5b8'/%3E%3Cpath d='M150,30 Q160,10 170,30 Q165,50 150,40 Z' fill='%23b8e5b8'/%3E%3Cpath d='M250,120 Q265,100 280,120 Q270,145 250,135 Z' fill='%23b8e5b8'/%3E%3Cpath d='M320,60 Q335,40 350,60 Q340,85 320,75 Z' fill='%23b8e5b8'/%3E%3Cpath d='M100,150 Q115,140 128,150 Q120,170 100,165 Z' fill='%23b8e5b8'/%3E%3Cpath d='M280,170 Q295,160 310,170 Q300,185 280,180 Z' fill='%23b8e5b8'/%3E%3C/g%3E%3C/svg%3E");
+      background-color: #1a1a1a;
       color: #e0e8e0;
     }
     
@@ -168,11 +157,17 @@
     }
     
     .rock-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.04'%3E%3Ccircle cx='20' cy='20' r='15' fill='%232d5a27'/%3E%3Ccircle cx='45' cy='35' r='18' fill='%232d5a27'/%3E%3Ccircle cx='15' cy='50' r='12' fill='%232d5a27'/%3E%3C/g%3E%3C/svg%3E");
+      background-color: #d9e8d6;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.12'%3E%3Cpath d='M25,20 Q30,10 35,20 Q32,35 25,38 Q20,35 25,20 Z M60,50 Q68,38 75,50 Q70,68 60,72 Q52,68 60,50 Z M15,75 Q20,65 28,75 Q23,88 15,92 Q8,88 15,75 Z M80,25 Q88,15 96,25 Q90,42 80,46 Q72,42 80,25 Z M45,85 Q52,76 60,85 Q54,98 45,102 Q38,98 45,85 Z' fill='%232d5a27'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 100px 100px;
+      background-attachment: fixed;
     }
     
     html.dark .rock-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.08'%3E%3Ccircle cx='20' cy='20' r='15' fill='%23a8d5a8'/%3E%3Ccircle cx='45' cy='35' r='18' fill='%23a8d5a8'/%3E%3Ccircle cx='15' cy='50' r='12' fill='%23a8d5a8'/%3E%3C/g%3E%3C/svg%3E");
+      background-color: #1a1a1a;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.4'%3E%3Cpath d='M25,20 Q30,10 35,20 Q32,35 25,38 Q20,35 25,20 Z M60,50 Q68,38 75,50 Q70,68 60,72 Q52,68 60,50 Z M15,75 Q20,65 28,75 Q23,88 15,92 Q8,88 15,75 Z M80,25 Q88,15 96,25 Q90,42 80,46 Q72,42 80,25 Z M45,85 Q52,76 60,85 Q54,98 45,102 Q38,98 45,85 Z' fill='%2390e590'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 100px 100px;
+      background-attachment: fixed;
     }
     
     /* Fix overlapping text on small screens */
