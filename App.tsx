@@ -41,13 +41,8 @@ const INITIAL_DATA: DaySchedule[] = [
       { id: 'n1', startTime: '07:00', endTime: '07:30', title: 'Budíček', category: ActivityType.OTHER },
       { id: 'n2', startTime: '07:30', endTime: '08:00', title: 'Rozcvička', category: ActivityType.PROGRAM },
       { id: 'n3', startTime: '08:00', endTime: '08:30', title: 'Raňajky', category: ActivityType.FOOD },
-      { id: 'n4', startTime: '08:30', endTime: '10:30', title: 'Priprava družinoviek', category: ActivityType.LECTURE },
-    ],
-    isCollapsed: false
-  }
-];
-
-const App: React.FC = () => {
+      { id: 'n4', startTime: '08:30', endTi      { id: 'n4', startTime: '08:30', endTime: '10:30', title: 'Priprava družinoviek', category: ActivityType.LECTURE },
+App: React.FC = () => {
   const [days, setDays] = useState<DaySchedule[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : INITIAL_DATA;
