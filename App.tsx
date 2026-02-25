@@ -10,8 +10,8 @@ const SYNC_API_BASE = 'https://kvdb.io/T8pWfWw5bVpLpQYjYnNqfR/';
 
 const INITIAL_DATA: DaySchedule[] = [
   {
-    id: 'day-monday',
-    date: 'Pondelok',
+    id: 'day-friday',
+    date: 'Piatok',
     events: [
       { id: 'f1', startTime: '07:00', endTime: '07:15', title: 'Budíček', category: ActivityType.OTHER },
       { id: 'f2', startTime: '07:15', endTime: '08:00', title: 'Úvod a Hra vonku', category: ActivityType.PROGRAM },
@@ -22,8 +22,8 @@ const INITIAL_DATA: DaySchedule[] = [
     isCollapsed: false
   },
   {
-    id: 'day-Tuesday',
-    date: 'Utorok',
+    id: 'day-saturday',
+    date: 'Sobota',
     events: [
       { id: 's1', startTime: '07:00', endTime: '07:30', title: 'Budíček a rozcvička', category: ActivityType.PROGRAM },
       { id: 's2', startTime: '07:30', endTime: '08:00', title: 'Hygiena', category: ActivityType.OTHER },
@@ -35,8 +35,8 @@ const INITIAL_DATA: DaySchedule[] = [
     isCollapsed: false
   },
   {
-    id: 'day-Wednesday',
-    date: 'Streda',
+    id: 'day-sunday',
+    date: 'Nedeľa',
     events: [
       { id: 'n1', startTime: '07:00', endTime: '07:30', title: 'Budíček', category: ActivityType.OTHER },
       { id: 'n2', startTime: '07:30', endTime: '08:00', title: 'Rozcvička', category: ActivityType.PROGRAM },
