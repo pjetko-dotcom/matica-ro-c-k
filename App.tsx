@@ -54,11 +54,6 @@ const App: React.FC = () => {
   });
 
   const [campCode, setCampCode] = useState<string>(localStorage.getItem('scout_camp_code') || '');
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    const saved = localStorage.getItem('scout_dark_mode');
-    if (saved !== null) return JSON.parse(saved);
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
   const [isSyncing, setIsSyncing] = useState(false);
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -82,15 +77,6 @@ const App: React.FC = () => {
   useEffect(() => {
     localStorage.setItem('scout_camp_code', campCode);
   }, [campCode]);
-
-  useEffect(() => {
-    localStorage.setItem('scout_dark_mode', JSON.stringify(isDarkMode));
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   const saveToCloud = async () => {
     if (!campCode) return alert('Zadajte kód MATICE!');
@@ -272,7 +258,7 @@ const App: React.FC = () => {
   }, [currentActiveActivity, currentTime]);
 
   return (
-    <div className="min-h-screen text-stone-900 dark:text-stone-100 dark:bg-slate-900 pb-10">
+    <div className="min-h-screen text-stone-900 pb-10">
       <div className={`${viewMode === 'grid' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto relative min-h-screen flex flex-col transition-all duration-700 px-3 sm:px-6`}>
         
         <header className="sticky top-0 z-50 glass-effect p-4 sm:p-5 flex flex-col gap-5 rounded-b-[2.5rem] shadow-xl border-b-2 border-stone-200/30">
@@ -295,7 +281,6 @@ const App: React.FC = () => {
                 />
                 <button onClick={loadFromCloud} className="w-9 h-9 flex-shrink-0 flex items-center justify-center text-stone-500 bg-white border-2 border-stone-500 rounded-xl hover:text-emerald-800 transition-colors"><i className="fas fa-leaf text-base"></i></button>
                 <button onClick={saveToCloud} className="w-9 h-9 flex-shrink-0 flex items-center justify-center text-emerald-800 bg-emerald-50 border-2 border-emerald-800 rounded-xl hover:text-stone-500 transition-colors"><i className="fas fa-cloud-arrow-up text-base"></i></button>
-                <button onClick={() => setIsDarkMode(!isDarkMode)} className={`w-9 h-9 flex-shrink-0 flex items-center justify-center border-2 rounded-xl transition-colors ${isDarkMode ? 'text-yellow-400 bg-slate-800 border-yellow-400' : 'text-stone-500 bg-white border-stone-500 hover:text-emerald-800'}`}><i className={`fas ${isDarkMode ? 'fa-moon' : 'fa-sun'} text-base`}></i></button>
                 <button onClick={handleAddDay} className="bg-stone-500 text-white w-9 h-9 flex-shrink-0 rounded-xl hover:bg-stone-800 flex items-center justify-center shadow-lg active:scale-95 transition-transform">
                   <i className="fas fa-plus text-base"></i>
                 </button>
@@ -366,8 +351,8 @@ const App: React.FC = () => {
                         />
                       </div>
                       <div className="flex items-center gap-2">
-                        <button onClick={() => {setTargetDayId(day.id); setIsEventModalOpen(true);}} className="w-10 h-10 bg-white dark:bg-emerald-700 border border-stone-100 dark:border-emerald-600 text-emerald-600 dark:text-white rounded-xl hover:border-emerald-200 dark:hover:border-emerald-500 shadow-sm transition-all hover:scale-105 active:scale-95"><i className="fas fa-plus"></i></button>
-                        <button onClick={() => {console.log('Remove clicked for day:', day.id); handleRemoveDay(day.id);}} className="w-10 h-10 bg-white dark:bg-red-900 border border-stone-100 dark:border-red-800 text-stone-600 dark:text-red-200 rounded-xl hover:text-rose-600 dark:hover:text-red-100 shadow-sm transition-all hover:scale-105 active:scale-95"><i className="fas fa-trash-can text-sm"></i></button>
+                        <button onClick={() => {setTargetDayId(day.id); setIsEventModalOpen(true);}} className="w-10 h-10 bg-white border border-stone-100 text-emerald-600 rounded-xl hover:border-emerald-200 shadow-sm transition-all hover:scale-105 active:scale-95"><i className="fas fa-plus"></i></button>
+                        <button onClick={() => {console.log('Remove clicked for day:', day.id); handleRemoveDay(day.id);}} className="w-10 h-10 bg-white border border-stone-100 text-stone-600 rounded-xl hover:text-rose-600 shadow-sm transition-all hover:scale-105 active:scale-95"><i className="fas fa-trash-can text-sm"></i></button>
                       </div>
                     </div>
 
