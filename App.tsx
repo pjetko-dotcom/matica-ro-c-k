@@ -233,16 +233,16 @@ const App: React.FC = () => {
   const getCategoryStyles = (cat: ActivityType, active: boolean) => {
     switch (cat) {
       case ActivityType.LECTURE: return { 
-        bar: 'bg-emerald-700', bg: active ? 'bg-emerald-950' : 'bg-slate-800', border: active ? 'border-emerald-700 ring-4 ring-emerald-900 shadow-lg' : 'border-slate-700', icon: 'fa-brain', text: 'text-emerald-300', colorClass: 'from-emerald-700 to-green-950'
+        bar: 'bg-emerald-800', bg: active ? 'bg-emerald-50' : 'bg-white', border: active ? 'border-emerald-800 ring-4 ring-emerald-100 shadow-lg' : 'border-stone-100', icon: 'fa-brain', text: 'text-emerald-800', colorClass: 'from-emerald-800 to-green-950'
       };
       case ActivityType.PROGRAM: return { 
-        bar: 'bg-sky-700', bg: active ? 'bg-sky-950' : 'bg-slate-800', border: active ? 'border-sky-700 ring-4 ring-sky-900 shadow-lg' : 'border-slate-700', icon: 'fa-dice-d6', text: 'text-sky-300', colorClass: 'from-sky-700 to-blue-900'
+        bar: 'bg-sky-800', bg: active ? 'bg-sky-50' : 'bg-white', border: active ? 'border-sky-800 ring-4 ring-sky-100 shadow-lg' : 'border-stone-100', icon: 'fa-dice-d6', text: 'text-sky-800', colorClass: 'from-sky-800 to-blue-900'
       };
       case ActivityType.FOOD: return { 
-        bar: 'bg-amber-700', bg: active ? 'bg-amber-950' : 'bg-slate-800', border: active ? 'border-amber-700 ring-4 ring-amber-900 shadow-lg' : 'border-slate-700', icon: 'fa-utensils', text: 'text-amber-300', colorClass: 'from-amber-700 to-stone-900'
+        bar: 'bg-amber-800', bg: active ? 'bg-amber-50' : 'bg-white', border: active ? 'border-amber-800 ring-4 ring-amber-100 shadow-lg' : 'border-stone-100', icon: 'fa-utensils', text: 'text-amber-800', colorClass: 'from-amber-800 to-stone-900'
       };
       default: return { 
-        bar: 'bg-red-700', bg: active ? 'bg-red-950' : 'bg-slate-800', border: active ? 'border-red-700 ring-4 ring-red-900 shadow-lg' : 'border-slate-700', icon: 'fa-heart', text: 'text-red-300', colorClass: 'from-red-700 to-stone-900'
+        bar: 'bg-red-800', bg: active ? 'bg-pink-50' : 'bg-white', border: active ? 'border-red-800 ring-4 ring-pink-100 shadow-lg' : 'border-stone-100', icon: 'fa-heart', text: 'text-red-800', colorClass: 'from-red-800 to-stone-900'
       };
     }
   };
@@ -258,17 +258,17 @@ const App: React.FC = () => {
   }, [currentActiveActivity, currentTime]);
 
   return (
-    <div className="min-h-screen bg-slate-900 text-stone-100 pb-10">
+    <div className="min-h-screen text-stone-900 dark:text-stone-100 dark:bg-slate-900 pb-10">
       <div className={`${viewMode === 'grid' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto relative min-h-screen flex flex-col transition-all duration-700 px-3 sm:px-6`}>
         
-        <header className="sticky top-0 z-50 glass-effect p-4 sm:p-5 flex flex-col gap-5 rounded-b-[2.5rem] shadow-xl border-b-2 border-slate-700/30 bg-slate-800/50 backdrop-blur-md">
+        <header className="sticky top-0 z-50 glass-effect p-4 sm:p-5 flex flex-col gap-5 rounded-b-[2.5rem] shadow-xl border-b-2 border-stone-200/30">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 flex-shrink-0">
               <div className="w-12 h-12 bg-gradient-to-tr from-emerald-900 to-green-700 rounded-2xl flex items-center justify-center text-white shadow-2xl animate-sway text-2xl">
                 🪨
               </div>
               <div>
-                <h1 className="font-extrabold text-2xl tracking-tight uppercase leading-none whitespace-nowrap text-stone-100">Matica <span className="text-emerald-400">Ro(c)k</span></h1>
+                <h1 className="font-extrabold text-2xl tracking-tight uppercase leading-none whitespace-nowrap">Matica <span className="text-emerald-800">Ro(c)k</span></h1>
               </div>
             </div>
 
@@ -277,11 +277,11 @@ const App: React.FC = () => {
                 <input 
                   type="text" placeholder="KÓD MATICE" value={campCode} 
                   onChange={e => setCampCode(e.target.value.toUpperCase())}
-                  className="max-w-[120px] sm:max-w-[180px] h-9 bg-slate-700 border-2 border-slate-600 focus:border-emerald-400 focus:bg-slate-600 text-stone-100 rounded-xl px-3 text-[10px] font-black outline-none transition-all placeholder:text-slate-400 uppercase tracking-widest"
+                  className="max-w-[120px] sm:max-w-[180px] h-9 bg-stone-100/50 border-2 border-stone-500 focus:border-emerald-800 focus:bg-white rounded-xl px-3 text-[10px] font-black outline-none transition-all placeholder:text-stone-500 uppercase tracking-widest"
                 />
-                <button onClick={loadFromCloud} className="w-9 h-9 flex-shrink-0 flex items-center justify-center text-slate-400 bg-slate-800 border-2 border-slate-600 rounded-xl hover:text-emerald-400 transition-colors"><i className="fas fa-leaf text-base"></i></button>
-                <button onClick={saveToCloud} className="w-9 h-9 flex-shrink-0 flex items-center justify-center text-emerald-400 bg-emerald-900 border-2 border-emerald-700 rounded-xl hover:text-emerald-300 transition-colors"><i className="fas fa-cloud-arrow-up text-base"></i></button>
-                <button onClick={handleAddDay} className="bg-slate-700 text-stone-100 w-9 h-9 flex-shrink-0 rounded-xl hover:bg-slate-600 flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+                <button onClick={loadFromCloud} className="w-9 h-9 flex-shrink-0 flex items-center justify-center text-stone-500 bg-white border-2 border-stone-500 rounded-xl hover:text-emerald-800 transition-colors"><i className="fas fa-leaf text-base"></i></button>
+                <button onClick={saveToCloud} className="w-9 h-9 flex-shrink-0 flex items-center justify-center text-emerald-800 bg-emerald-50 border-2 border-emerald-800 rounded-xl hover:text-stone-500 transition-colors"><i className="fas fa-cloud-arrow-up text-base"></i></button>
+                <button onClick={handleAddDay} className="bg-stone-500 text-white w-9 h-9 flex-shrink-0 rounded-xl hover:bg-stone-800 flex items-center justify-center shadow-lg active:scale-95 transition-transform">
                   <i className="fas fa-plus text-base"></i>
                 </button>
               </div>
@@ -289,7 +289,7 @@ const App: React.FC = () => {
             
             {viewMode === 'live' && (
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-emerald-400 bg-emerald-900/30 border border-emerald-700">
+                <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-emerald-800 bg-emerald-50 border border-emerald-100">
                   <i className="fas fa-clock text-xl"></i>
                 </div>
                 <div className="font-black text-xl tabular-nums">
@@ -302,10 +302,10 @@ const App: React.FC = () => {
           {viewMode === 'grid' && (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full">
               {[
-                { label: 'Prednáška', icon: 'fa-brain', color: 'bg-emerald-900 text-emerald-100 border-emerald-700'},
-                { label: 'Program', icon: 'fa-dice-d6', color: 'bg-sky-900 text-sky-100 border-sky-700' },
-                { label: 'Jedlo', icon: 'fa-utensils', color: 'bg-amber-900 text-amber-100 border-amber-700' },
-                { label: 'Ostatné', icon: 'fa-heart', color: 'bg-red-900 text-red-100 border-red-700' },
+                { label: 'Prednáška', icon: 'fa-brain', color: 'bg-emerald-50 text-emerald-800 border-emerald-800'},
+                { label: 'Program', icon: 'fa-dice-d6', color: 'bg-sky-50 text-sky-800 border-sky-800' },
+                { label: 'Jedlo', icon: 'fa-utensils', color: 'bg-amber-50 text-amber-800 border-amber-800' },
+                { label: 'Ostatné', icon: 'fa-heart', color: 'bg-pink-50 text-red-800 border-red-800' },
               ].map(item => (
                 <div key={item.label} className={`flex items-center justify-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 rounded-xl border-2 text-[9px] sm:text-[11px] font-black uppercase tracking-widest ${item.color}`}>
                   <i className={`fas ${item.icon}`}></i>
@@ -315,16 +315,16 @@ const App: React.FC = () => {
             </div>
           )}
 
-          <div className="flex gap-2 p-1 bg-slate-800/60 rounded-2xl border-0 border-slate-700/50">
+          <div className="flex gap-2 p-1 bg-stone-100/60 rounded-2xl border-0 border-stone-200/50">
             <button 
               onClick={() => setViewMode('grid')}
-              className={`flex-1 flex items-center justify-center gap-2 py-3 text-[13px] font-black uppercase tracking-widest rounded-xl transition-all border-2 ${viewMode === 'grid' ? 'bg-slate-700 text-stone-100 border-slate-600 shadow-md' : 'text-slate-500 border-slate-700'}`}
+              className={`flex-1 flex items-center justify-center gap-2 py-3 text-[13px] font-black uppercase tracking-widest rounded-xl transition-all border-2 ${viewMode === 'grid' ? 'bg-stone-200 text-stone-900 border-stone-800 shadow-md' : 'text-stone-400 border-stone-200'}`}
             >
               Matica
             </button>
             <button 
               onClick={() => setViewMode('live')}
-              className={`flex-1 flex items-center justify-center gap-2 py-3 text-[13px] font-black uppercase tracking-widest rounded-xl transition-all border-2 ${viewMode === 'live' ? 'bg-slate-700 text-stone-100 border-slate-600 shadow-lg' : 'text-slate-500 border-slate-700'}`}
+              className={`flex-1 flex items-center justify-center gap-2 py-3 text-[13px] font-black uppercase tracking-widest rounded-xl transition-all border-2 ${viewMode === 'live' ? 'bg-stone-200 text-stone-900 border-stone-800 shadow-lg' : 'text-stone-400 border-stone-200'}`}
             >
               Práve Prebieha
             </button>
@@ -340,19 +340,19 @@ const App: React.FC = () => {
                   <section key={day.id} className="relative">
                     <div className="flex items-center justify-between mb-8 px-2">
                       <div className="flex items-center gap-4 cursor-pointer" onClick={() => setDays(prev => prev.map(d => d.id === day.id ? {...d, isCollapsed: !d.isCollapsed} : d))}>
-                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all ${day.isCollapsed ? 'bg-slate-700 text-slate-400' : 'bg-emerald-900 text-emerald-100'}`}>
+                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all ${day.isCollapsed ? 'bg-stone-200 text-stone-500' : 'bg-emerald-100 text-emerald-800'}`}>
                           <i className={`fas fa-chevron-right text-xs transition-transform ${!day.isCollapsed ? 'rotate-90' : ''}`}></i>
                         </div>
                         <input 
                           type="text" value={day.date} 
                           onClick={e => e.stopPropagation()}
                           onChange={e => setDays(prev => prev.map(d => d.id === day.id ? {...d, date: e.target.value} : d))}
-                          className="font-black text-stone-100 text-2xl uppercase bg-transparent outline-none w-full focus:text-emerald-400 transition-colors tracking-normal day-name-input" 
+                          className="font-black text-stone-800 text-2xl uppercase bg-transparent outline-none w-full focus:text-emerald-800 transition-colors tracking-normal day-name-input" 
                         />
                       </div>
                       <div className="flex items-center gap-2">
-                        <button onClick={() => {setTargetDayId(day.id); setIsEventModalOpen(true);}} className="w-10 h-10 bg-slate-800 border border-slate-700 text-emerald-400 rounded-xl hover:border-emerald-600 shadow-sm transition-all hover:scale-105 active:scale-95"><i className="fas fa-plus"></i></button>
-                        <button onClick={() => {console.log('Remove clicked for day:', day.id); handleRemoveDay(day.id);}} className="w-10 h-10 bg-slate-800 border border-slate-700 text-rose-400 rounded-xl hover:text-rose-300 shadow-sm transition-all hover:scale-105 active:scale-95"><i className="fas fa-trash-can text-sm"></i></button>
+                        <button onClick={() => {setTargetDayId(day.id); setIsEventModalOpen(true);}} className="w-10 h-10 bg-white dark:bg-emerald-700 border border-stone-100 dark:border-emerald-600 text-emerald-600 dark:text-white rounded-xl hover:border-emerald-200 dark:hover:border-emerald-500 shadow-sm transition-all hover:scale-105 active:scale-95"><i className="fas fa-plus"></i></button>
+                        <button onClick={() => {console.log('Remove clicked for day:', day.id); handleRemoveDay(day.id);}} className="w-10 h-10 bg-white dark:bg-red-900 border border-stone-100 dark:border-red-800 text-stone-600 dark:text-red-200 rounded-xl hover:text-rose-600 dark:hover:text-red-100 shadow-sm transition-all hover:scale-105 active:scale-95"><i className="fas fa-trash-can text-sm"></i></button>
                       </div>
                     </div>
 
@@ -369,7 +369,7 @@ const App: React.FC = () => {
                           return (
                             <div key={ev.id} className="relative z-10 flex items-start gap-5 sm:gap-10 group">
                               <div className="flex flex-col items-center pt-2.5 relative z-20">
-                                <div className={`w-5 h-5 rounded-full border-[3px] transition-all duration-700 ${active ? `bg-stone-100 ${styles.border.split(' ')[0]} scale-125 shadow-xl ring-4 ring-emerald-900` : 'bg-slate-700 border-slate-600 group-hover:border-slate-500'}`}></div>
+                                <div className={`w-5 h-5 rounded-full border-[3px] transition-all duration-700 ${active ? `bg-white ${styles.border.split(' ')[0]} scale-125 shadow-xl ring-4 ring-emerald-100` : 'bg-white border-stone-200 group-hover:border-stone-400'}`}></div>
                               </div>
 
                               <div className="flex-grow flex gap-3">
@@ -377,7 +377,7 @@ const App: React.FC = () => {
                                   <div 
                                     onClick={() => setExpandedEventId(isExpanded ? null : ev.id)}
                                     style={{ minHeight: `${heightPx}px` }}
-                                    className={`flex flex-col rounded-[1.8rem] border-2 transition-all duration-300 cursor-pointer overflow-hidden ${styles.bg} ${styles.border} ${active ? '-translate-y-1 scale-[1.01]' : 'shadow-sm hover:border-slate-500'}`}
+                                    className={`flex flex-col rounded-[1.8rem] border-2 transition-all duration-300 cursor-pointer overflow-hidden ${styles.bg} ${styles.border} ${active ? '-translate-y-1 scale-[1.01]' : 'shadow-sm hover:border-stone-300'}`}
                                   >
                                     <div className="flex flex-grow">
                                       <div className={`w-2.5 ${styles.bar}`}></div>
@@ -390,7 +390,7 @@ const App: React.FC = () => {
                                               </span>
                                               {active && <span className={`flex h-2 w-2 rounded-full ${styles.bar} animate-pulse`}></span>}
                                             </div>
-                                            <h4 className={`text-sm sm:text-base font-bold uppercase tracking-normal leading-tight mt-0.5 ${active ? styles.text + ' italic font-black' : 'text-slate-300'} truncate`}>
+                                            <h4 className={`text-sm sm:text-base font-bold uppercase tracking-normal leading-tight mt-0.5 ${active ? styles.text + ' italic font-black' : 'text-stone-700'} truncate`}>
                                               {ev.title}
                                             </h4>
                                           </div>
@@ -404,7 +404,7 @@ const App: React.FC = () => {
                                                   </span>
                                                 )}
                                                 {ev.shadow && (
-                                                  <span className="text-[9px] sm:text-[10px] font-medium text-slate-400 block leading-tight">
+                                                  <span className="text-[9px] sm:text-[10px] font-medium text-stone-500 block leading-tight">
                                                     {ev.shadow}
                                                   </span>
                                                 )}
@@ -431,16 +431,16 @@ const App: React.FC = () => {
                                   </div>
 
                                   {isExpanded && (
-                                    <div className="grid grid-cols-3 gap-3 mt-3 p-2 bg-slate-800 rounded-[1.5rem] animate-in fade-in duration-300 shadow-xl border border-slate-700/20">
-                                      <button onClick={() => {setPostponingInfo({dayId: day.id, eventId: ev.id}); setIsPostponeModalOpen(true);}} className="flex flex-col items-center gap-1.5 py-3 text-slate-400 hover:text-sky-400 transition-colors">
+                                    <div className="grid grid-cols-3 gap-3 mt-3 p-2 bg-stone-100 rounded-[1.5rem] animate-in fade-in duration-300 shadow-xl border border-stone-400/20">
+                                      <button onClick={() => {setPostponingInfo({dayId: day.id, eventId: ev.id}); setIsPostponeModalOpen(true);}} className="flex flex-col items-center gap-1.5 py-3 text-stone-700 hover:text-sky-700 transition-colors">
                                         <i className="fas fa-clock text-xs"></i>
                                         <span className="text-[8px] font-black uppercase tracking-widest">Posun</span>
                                       </button>
-                                      <button onClick={() => {setTargetDayId(day.id); setEditingEvent({dayId: day.id, event: ev}); setIsEventModalOpen(true);}} className="flex flex-col items-center gap-1.5 py-3 text-slate-400 hover:text-emerald-400 transition-colors">
+                                      <button onClick={() => {setTargetDayId(day.id); setEditingEvent({dayId: day.id, event: ev}); setIsEventModalOpen(true);}} className="flex flex-col items-center gap-1.5 py-3 text-stone-700 hover:text-emerald-700 transition-colors">
                                         <i className="fas fa-pen-nib text-xs"></i>
                                         <span className="text-[8px] font-black uppercase tracking-widest">Upraviť</span>
                                       </button>
-                                      <button onClick={() => handleDeleteEvent(day.id, ev.id)} className="flex flex-col items-center gap-1.5 py-3 text-rose-400 hover:text-rose-300 transition-colors">
+                                      <button onClick={() => handleDeleteEvent(day.id, ev.id)} className="flex flex-col items-center gap-1.5 py-3 text-rose-800 hover:text-rose-950 transition-colors">
                                         <i className="fas fa-trash-can text-xs"></i>
                                         <span className="text-[8px] font-black uppercase tracking-widest">Zmazať</span>
                                       </button>
@@ -452,14 +452,14 @@ const App: React.FC = () => {
                                   <button 
                                     disabled={idx === 0}
                                     onClick={() => handleMoveEvent(day.id, ev.id, 'up')}
-                                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${idx === 0 ? 'text-slate-600' : 'text-slate-500 hover:bg-slate-800 hover:text-emerald-400 active:scale-90 shadow-sm'}`}
+                                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${idx === 0 ? 'text-stone-200' : 'text-stone-400 hover:bg-white hover:text-emerald-700 active:scale-90 shadow-sm'}`}
                                   >
                                     <i className="fas fa-chevron-up text-xs"></i>
                                   </button>
                                   <button 
                                     disabled={idx === sortedEvents.length - 1}
                                     onClick={() => handleMoveEvent(day.id, ev.id, 'down')}
-                                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${idx === sortedEvents.length - 1 ? 'text-slate-600' : 'text-slate-500 hover:bg-slate-800 hover:text-emerald-400 active:scale-90 shadow-sm'}`}
+                                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${idx === sortedEvents.length - 1 ? 'text-stone-200' : 'text-stone-400 hover:bg-white hover:text-emerald-700 active:scale-90 shadow-sm'}`}
                                   >
                                     <i className="fas fa-chevron-down text-xs"></i>
                                   </button>
@@ -472,11 +472,11 @@ const App: React.FC = () => {
                         {/* Plus button at the bottom of the list */}
                         <div className="relative z-10 flex items-center gap-5 sm:gap-10 pt-4">
                            <div className="w-5 h-5 flex items-center justify-center">
-                              <div className="w-2.5 h-2.5 rounded-full bg-slate-700"></div>
+                              <div className="w-2.5 h-2.5 rounded-full bg-stone-300"></div>
                            </div>
                            <button 
                              onClick={() => {setTargetDayId(day.id); setIsEventModalOpen(true);}}
-                             className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-slate-800 border border-slate-700 text-slate-400 hover:text-emerald-400 hover:border-emerald-600 transition-all shadow-sm active:scale-95 group"
+                             className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white border border-stone-200 text-stone-400 hover:text-emerald-700 hover:border-emerald-200 transition-all shadow-sm active:scale-95 group"
                            >
                              <i className="fas fa-plus text-xs"></i>
                              <span className="text-[10px] font-black uppercase tracking-[0.2em]">Pridať aktivitu</span>
@@ -484,7 +484,7 @@ const App: React.FC = () => {
                         </div>
 
                         {day.events.length === 0 && (
-                          <div className="ml-14 p-12 text-center border-2 border-dashed border-slate-700 rounded-[2rem] text-slate-500 text-[11px] font-black uppercase tracking-[0.4em] bg-slate-800/20">
+                          <div className="ml-14 p-12 text-center border-2 border-dashed border-stone-200 rounded-[2rem] text-stone-300 text-[11px] font-black uppercase tracking-[0.4em] bg-stone-50/20">
                             Prázdny papier
                           </div>
                         )}
@@ -502,9 +502,9 @@ const App: React.FC = () => {
                   <div className={`w-full max-w-6xl h-auto rounded-[3.5rem] p-6 md:p-10 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden transition-all duration-1000 ${styles.bg} border-4 ${styles.border.split(' ')[0]}`}>
                     <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none rock-pattern"></div>
                     
-                    <div className="absolute top-6 left-8 right-8 flex flex-wrap justify-center gap-3 text-slate-400 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] z-10">
-                      <span className="bg-slate-800/50 px-5 py-2 rounded-full backdrop-blur-2xl border border-slate-700">{currentActiveActivity.startTime} — {currentActiveActivity.endTime}</span>
-                      <span className={`bg-slate-800/50 px-5 py-2 rounded-full backdrop-blur-2xl border border-slate-700 capitalize ${styles.text}`}>{currentActiveActivity.category}</span>
+                    <div className="absolute top-6 left-8 right-8 flex flex-wrap justify-center gap-3 text-stone-400 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] z-10">
+                      <span className="bg-stone-100/50 px-5 py-2 rounded-full backdrop-blur-2xl border border-stone-200">{currentActiveActivity.startTime} — {currentActiveActivity.endTime}</span>
+                      <span className={`bg-stone-100/50 px-5 py-2 rounded-full backdrop-blur-2xl border border-stone-200 capitalize ${styles.text}`}>{currentActiveActivity.category}</span>
                     </div>
                     
                     <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black ${styles.text} uppercase tracking-tight mb-2 mt-10 leading-tight animate-in zoom-in-95 duration-1000 drop-shadow-sm z-10 text-balance px-4 italic`}>
@@ -519,7 +519,7 @@ const App: React.FC = () => {
                           </div>
                         )}
                         {currentActiveActivity.shadow && (
-                          <div className="text-base sm:text-lg font-medium text-slate-400 mt-0.5">
+                          <div className="text-base sm:text-lg font-medium text-stone-500 mt-0.5">
                             {currentActiveActivity.shadow}
                           </div>
                         )}
@@ -546,11 +546,11 @@ const App: React.FC = () => {
                     </div>
 
                     {nextActivity && (
-                      <div className="mt-4 p-4 md:p-6 bg-slate-800/50 backdrop-blur-3xl rounded-[2.5rem] border border-slate-700 w-full max-w-lg z-10 animate-in fade-in slide-in-from-bottom-10 duration-1000 overflow-hidden shadow-sm">
+                      <div className="mt-4 p-4 md:p-6 bg-stone-100/50 backdrop-blur-3xl rounded-[2.5rem] border border-stone-200 w-full max-w-lg z-10 animate-in fade-in slide-in-from-bottom-10 duration-1000 overflow-hidden shadow-sm">
                         <div className="flex items-center justify-center gap-3 mb-2 opacity-50">
-                          <div className="h-px bg-slate-700 flex-grow"></div>
-                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] whitespace-nowrap">O {nextActivity.startTime}</span>
-                          <div className="h-px bg-slate-700 flex-grow"></div>
+                          <div className="h-px bg-stone-300 flex-grow"></div>
+                          <span className="text-[10px] font-black text-stone-400 uppercase tracking-[0.4em] whitespace-nowrap">O {nextActivity.startTime}</span>
+                          <div className="h-px bg-stone-300 flex-grow"></div>
                         </div>
                         <p className={`font-black text-lg sm:text-2xl uppercase truncate italic tracking-tight ${getCategoryStyles(nextActivity.category, true).text}`}>
                           {nextActivity.title}
@@ -560,19 +560,19 @@ const App: React.FC = () => {
                   </div>
                 );
               })() : (
-                <div className="text-center p-12 sm:p-20 bg-slate-800/95 backdrop-blur-xl rounded-[4rem] border-4 border-slate-700 shadow-2xl w-full max-w-3xl transform transition-all overflow-hidden relative">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-slate-700 rounded-[3rem] flex items-center justify-center mx-auto mb-10 text-slate-600 animate-sway border border-slate-600">
+                <div className="text-center p-12 sm:p-20 bg-white/95 backdrop-blur-xl rounded-[4rem] border-4 border-stone-50 shadow-2xl w-full max-w-3xl transform transition-all overflow-hidden relative">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-stone-50 rounded-[3rem] flex items-center justify-center mx-auto mb-10 text-stone-200 animate-sway border border-stone-100">
                     <i className="fas fa-campground text-4xl sm:text-5xl opacity-10"></i>
                   </div>
-                  <h2 className="text-3xl sm:text-5xl font-black text-stone-100 uppercase mb-4 tracking-normal italic">Voľný Čas</h2>
-                  <p className="text-slate-400 text-[10px] sm:text-xs font-black uppercase tracking-[0.5em] px-8 leading-relaxed">Aktuálne nie je naplánovaný žiaden program</p>
+                  <h2 className="text-3xl sm:text-5xl font-black text-stone-900 uppercase mb-4 tracking-normal italic">Voľný Čas</h2>
+                  <p className="text-stone-400 text-[10px] sm:text-xs font-black uppercase tracking-[0.5em] px-8 leading-relaxed">Aktuálne nie je naplánovaný žiaden program</p>
                   
                   {nextActivity && (
-                    <div className="mt-16 pt-12 border-t-2 border-slate-700 relative">
-                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.6em] block mb-8">Priprav sa na</span>
-                      <div className="bg-slate-700/50 p-8 rounded-[3rem] border border-slate-600 shadow-sm">
+                    <div className="mt-16 pt-12 border-t-2 border-stone-50 relative">
+                      <span className="text-[10px] font-black text-stone-300 uppercase tracking-[0.6em] block mb-8">Priprav sa na</span>
+                      <div className="bg-stone-50/50 p-8 rounded-[3rem] border border-stone-100 shadow-sm">
                         <span className={`font-black text-2xl block mb-2 ${getCategoryStyles(nextActivity.category, true).text}`}>{nextActivity.startTime}</span>
-                        <p className="text-stone-100 font-black uppercase text-2xl sm:text-4xl leading-tight line-clamp-2 italic tracking-tight">{nextActivity.title}</p>
+                        <p className="text-stone-950 font-black uppercase text-2xl sm:text-4xl leading-tight line-clamp-2 italic tracking-tight">{nextActivity.title}</p>
                       </div>
                     </div>
                   )}
