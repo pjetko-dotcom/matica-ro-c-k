@@ -84,9 +84,6 @@ const App: React.FC = () => {
     try {
       const res = await fetch(`${SYNC_API_BASE}${campCode}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ value: JSON.stringify(days) }),
       });
       const responseText = await res.text();
