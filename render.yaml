@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: matica-rock-backend
+    runtime: node
+    buildCommand: cd api-server && npm install
+    startCommand: cd api-server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production

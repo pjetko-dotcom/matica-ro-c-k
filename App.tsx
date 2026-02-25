@@ -6,7 +6,7 @@ import EventForm from './components/EventForm';
 import PostponeForm from './components/PostponeForm';
 
 const STORAGE_KEY = 'scout_timetable_nature_v8';
-const SYNC_API_BASE = 'https://kvdb.io/Ui74hQSbxMXCoUEzxxugiq/';
+const SYNC_API_BASE = 'https://matica-rock-backend.onrender.com/api/sync/';
 
 const INITIAL_DATA: DaySchedule[] = [
   {
@@ -84,17 +84,20 @@ const App: React.FC = () => {
     try {
       const res = await fetch(`${SYNC_API_BASE}${campCode}`, {
         method: 'POST',
-        body: JSON.stringify({ value: JSON.stringify(days) }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(days),
       });
       const responseText = await res.text();
       console.log('Save response:', res.status, responseText);
-      if (res.ok || res.status === 200 || res.status === 201) {
+      if (res.ok) {
         alert('🌿 Plán úspešne uložený v cloude!');
       } else {
-        alert('Chyba pri ukladaní (status: ' + res.status + '). Skúste znova.');
+        alert('Chyba pri ukladaní (status: ' + res.status + ') Render server neodpovedá.');
       }
     } catch (e) {
-      alert('Chyba spojenia: ' + (e instanceof Error ? e.message : 'Neznáma chyba'));
+      alert('Chyba spojenia: ' + (e instanceof Error ? e.message : 'Neznáma chyba') + '\nSkontroluj či je Render server nabehaný.');
       console.error('Save error:', e);
     } finally {
       setIsSyncing(false);
