@@ -6,7 +6,7 @@ import EventForm from './components/EventForm';
 import PostponeForm from './components/PostponeForm';
 
 const STORAGE_KEY = 'scout_timetable_nature_v8';
-const SYNC_API_BASE = 'https://kvdb.io/T8pWfWw5bVpLpQYjYnNqfR/';
+const SYNC_API_BASE = 'https://kvdb.io/Ui74hQSbxMXCoUEzxxugiq/';
 
 const INITIAL_DATA: DaySchedule[] = [
   {
