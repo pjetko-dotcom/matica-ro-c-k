@@ -87,15 +87,18 @@ const App: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(days),
+        body: JSON.stringify({ value: JSON.stringify(days) }),
       });
-      if (res.ok) {
+      const responseText = await res.text();
+      console.log('Save response:', res.status, responseText);
+      if (res.ok || res.status === 200 || res.status === 201) {
         alert('🌿 Plán úspešne uložený v cloude!');
       } else {
-        alert('Chyba pri ukladaní. Skúste znova.');
+        alert('Chyba pri ukladaní (status: ' + res.status + '). Skúste znova.');
       }
     } catch (e) {
       alert('Chyba spojenia: ' + (e instanceof Error ? e.message : 'Neznáma chyba'));
+      console.error('Save error:', e);
     } finally {
       setIsSyncing(false);
     }
@@ -106,23 +109,43 @@ const App: React.FC = () => {
     setIsSyncing(true);
     try {
       const res = await fetch(`${SYNC_API_BASE}${campCode}`);
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          setDays(data);
+      const responseData = await res.json();
+      console.log('Load response:', res.status, responseData);
+      
+      if (res.ok && responseData) {
+        let parsedDays: DaySchedule[] | null = null;
+        
+        // Skúsiť parsovať ako priame pole
+        if (Array.isArray(responseData)) {
+          parsedDays = responseData;
+        } 
+        // Skúsiť parsovať ako KVDB value (string)
+        else if (responseData.value && typeof responseData.value === 'string') {
+          try {
+            parsedDays = JSON.parse(responseData.value);
+          } catch {
+            console.error('Failed to parse value', responseData.value);
+          }
+        }
+        // Skúsiť priamo ako objekt
+        else if (responseData && typeof responseData === 'object') {
+          parsedDays = responseData;
+        }
+        
+        if (parsedDays && Array.isArray(parsedDays)) {
+          setDays(parsedDays);
           alert('🍃 Plán stiahnutý!');
-        } else if (data && typeof data === 'object') {
-          alert('Nič sa nenašlo.');
         } else {
           alert('Nič sa nenašlo.');
         }
       } else if (res.status === 404) {
         alert('Kód "' + campCode + '" sa nenašiel.');
       } else {
-        alert('Chyba pri sťahovaní.');
+        alert('Chyba pri sťahovaní (status: ' + res.status + ').');
       }
     } catch (e) {
       alert('Chyba sťahovania: ' + (e instanceof Error ? e.message : 'Neznáma chyba'));
+      console.error('Load error:', e);
     } finally {
       setIsSyncing(false);
     }
