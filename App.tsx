@@ -82,13 +82,20 @@ const App: React.FC = () => {
     if (!campCode) return alert('Zadajte kód MATICE!');
     setIsSyncing(true);
     try {
-      await fetch(`${SYNC_API_BASE}${campCode}`, {
+      const res = await fetch(`${SYNC_API_BASE}${campCode}`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(days),
       });
-      alert('🌿 Plán úspešne uložený v cloude!');
+      if (res.ok) {
+        alert('🌿 Plán úspešne uložený v cloude!');
+      } else {
+        alert('Chyba pri ukladaní. Skúste znova.');
+      }
     } catch (e) {
-      alert('Chyba spojenia.');
+      alert('Chyba spojenia: ' + (e instanceof Error ? e.message : 'Neznáma chyba'));
     } finally {
       setIsSyncing(false);
     }
@@ -101,13 +108,21 @@ const App: React.FC = () => {
       const res = await fetch(`${SYNC_API_BASE}${campCode}`);
       if (res.ok) {
         const data = await res.json();
-        setDays(data);
-        alert('🍃 Plán stiahnutý!');
+        if (Array.isArray(data)) {
+          setDays(data);
+          alert('🍃 Plán stiahnutý!');
+        } else if (data && typeof data === 'object') {
+          alert('Nič sa nenašlo.');
+        } else {
+          alert('Nič sa nenašlo.');
+        }
+      } else if (res.status === 404) {
+        alert('Kód "' + campCode + '" sa nenašiel.');
       } else {
-        alert('Nič sa nenašlo.');
+        alert('Chyba pri sťahovaní.');
       }
     } catch (e) {
-      alert('Chyba sťahovania.');
+      alert('Chyba sťahovania: ' + (e instanceof Error ? e.message : 'Neznáma chyba'));
     } finally {
       setIsSyncing(false);
     }
