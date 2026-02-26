@@ -317,8 +317,8 @@ const App: React.FC = () => {
                   onChange={e => setCampCode(e.target.value.toUpperCase())}
                   className="max-w-[120px] sm:max-w-[180px] h-9 bg-stone-100/50 border-2 border-stone-500 focus:border-emerald-800 focus:bg-white rounded-xl px-3 text-[10px] font-black outline-none transition-all placeholder:text-stone-500 uppercase tracking-widest"
                 />
-                <button onClick={saveToCloud} className="w-9 h-9 flex-shrink-0 flex items-center justify-center text-stone-500 bg-white border-2 border-stone-500 rounded-xl hover:text-emerald-800 transition-colors"><i className="fas fa-cloud-arrow-down text-base"></i></button>
-                <button onClick={loadFromCloud} className="w-9 h-9 flex-shrink-0 flex items-center justify-center text-emerald-800 bg-emerald-50 border-2 border-emerald-800 rounded-xl hover:text-stone-500 transition-colors"><i className="fas fa-cloud-arrow-up text-base"></i></button>
+                <button onClick={saveToCloud} title="Uložiť plán do cloudu" className="h-9 px-2 flex-shrink-0 flex items-center gap-1 text-stone-500 bg-white border-2 border-stone-500 rounded-xl hover:text-emerald-800 transition-colors text-[10px] font-bold"><i className="fas fa-cloud-arrow-up text-sm"></i><span className="hidden sm:inline">ULOŽIŤ</span></button>
+                <button onClick={loadFromCloud} title="Stiahnuť plán z cloudu" className="h-9 px-2 flex-shrink-0 flex items-center gap-1 text-emerald-800 bg-emerald-50 border-2 border-emerald-800 rounded-xl hover:text-stone-500 transition-colors text-[10px] font-bold"><i className="fas fa-cloud-arrow-down text-sm"></i><span className="hidden sm:inline">STIAHNUŤ</span></button>
                 <button onClick={handleAddDay} className="bg-stone-500 text-white w-9 h-9 flex-shrink-0 rounded-xl hover:bg-stone-800 flex items-center justify-center shadow-lg active:scale-95 transition-transform">
                   <i className="fas fa-plus text-base"></i>
                 </button>
