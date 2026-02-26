@@ -6,7 +6,7 @@ import EventForm from './components/EventForm';
 import PostponeForm from './components/PostponeForm';
 
 const STORAGE_KEY = 'scout_timetable_nature_v8';
-const SYNC_API_BASE = 'https://matica-rock-backend.onrender.com/api/sync/';
+const SYNC_API_BASE = 'https://fourseasons.sk/matica-ro(c)k/api/sync.php?code=';
 
 const INITIAL_DATA: DaySchedule[] = [
   {
