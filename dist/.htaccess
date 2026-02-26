@@ -11,7 +11,10 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /matica-ro\(c\)k/
+    RewriteBase /matica-ro(c)k/
+
+    # NIKDY neprepisuj requesty do api/ priečinka (PHP sync backend)
+    RewriteRule ^api/ - [L]
 
     # Preskočiť ak súbor skutočne existuje (JS, CSS, PHP, obrázky...)
     RewriteCond %{REQUEST_FILENAME} !-f
