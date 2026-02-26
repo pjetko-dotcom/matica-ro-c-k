@@ -299,36 +299,22 @@ const App: React.FC = () => {
     <div className="min-h-screen text-stone-900 dark:text-stone-100 dark:bg-slate-900 pb-10">
       <div className={`${viewMode === 'grid' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto relative min-h-screen flex flex-col transition-all duration-700 px-3 sm:px-6`}>
         
-        <header className="sticky top-0 z-50 glass-effect p-4 sm:p-5 flex flex-col gap-5 rounded-b-[2.5rem] shadow-xl border-b-2 border-stone-200/30">
+        <header className="sticky top-0 z-50 glass-effect px-4 pt-4 pb-3 sm:px-5 sm:pt-5 sm:pb-4 flex flex-col gap-3 rounded-b-[2.5rem] shadow-xl border-b-2 border-stone-200/30">
+          {/* Riadok 1: Logo + view-mode live clock */}
           <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4 flex-shrink-0">
-              <div className="w-12 h-12 bg-gradient-to-tr from-emerald-900 to-green-700 rounded-2xl flex items-center justify-center text-white shadow-2xl animate-sway text-2xl">
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-tr from-emerald-900 to-green-700 rounded-2xl flex items-center justify-center text-white shadow-2xl animate-sway text-xl sm:text-2xl">
                 🪨
               </div>
               <div>
-                <h1 className="font-extrabold text-2xl tracking-tight uppercase leading-none whitespace-nowrap">Matica <span className="text-emerald-800">Ro(c)k</span></h1>
+                <h1 className="font-extrabold text-xl sm:text-2xl tracking-tight uppercase leading-none whitespace-nowrap">Matica <span className="text-emerald-800">Ro(c)k</span></h1>
               </div>
             </div>
 
-            {viewMode === 'grid' && (
-              <div className="flex items-center gap-2 flex-grow justify-end overflow-hidden">
-                <input 
-                  type="text" placeholder="KÓD MATICE" value={campCode} 
-                  onChange={e => setCampCode(e.target.value.toUpperCase())}
-                  className="max-w-[120px] sm:max-w-[180px] h-9 bg-stone-100/50 border-2 border-stone-500 focus:border-emerald-800 focus:bg-white rounded-xl px-3 text-[10px] font-black outline-none transition-all placeholder:text-stone-500 uppercase tracking-widest"
-                />
-                <button onClick={saveToCloud} title="Uložiť plán do cloudu" className="h-9 px-2 flex-shrink-0 flex items-center gap-1 text-stone-500 bg-white border-2 border-stone-500 rounded-xl hover:text-emerald-800 transition-colors text-[10px] font-bold"><i className="fas fa-cloud-arrow-up text-sm"></i><span className="hidden sm:inline">ULOŽIŤ</span></button>
-                <button onClick={loadFromCloud} title="Stiahnuť plán z cloudu" className="h-9 px-2 flex-shrink-0 flex items-center gap-1 text-emerald-800 bg-emerald-50 border-2 border-emerald-800 rounded-xl hover:text-stone-500 transition-colors text-[10px] font-bold"><i className="fas fa-cloud-arrow-down text-sm"></i><span className="hidden sm:inline">STIAHNUŤ</span></button>
-                <button onClick={handleAddDay} className="bg-stone-500 text-white w-9 h-9 flex-shrink-0 rounded-xl hover:bg-stone-800 flex items-center justify-center shadow-lg active:scale-95 transition-transform">
-                  <i className="fas fa-plus text-base"></i>
-                </button>
-              </div>
-            )}
-            
             {viewMode === 'live' && (
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-emerald-800 bg-emerald-50 border border-emerald-100">
-                  <i className="fas fa-clock text-xl"></i>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-2xl flex items-center justify-center text-emerald-800 bg-emerald-50 border border-emerald-100">
+                  <i className="fas fa-clock text-lg"></i>
                 </div>
                 <div className="font-black text-xl tabular-nums">
                   {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -337,6 +323,29 @@ const App: React.FC = () => {
             )}
           </div>
 
+          {/* Riadok 2: Sync panel – plná šírka na mobile */}
+          {viewMode === 'grid' && (
+            <div className="flex items-center gap-2 w-full">
+              <input 
+                type="text" placeholder="KÓD MATICE" value={campCode} 
+                onChange={e => setCampCode(e.target.value.toUpperCase())}
+                className="flex-1 min-w-0 h-9 bg-stone-100/50 border-2 border-stone-500 focus:border-emerald-800 focus:bg-white rounded-xl px-3 text-[10px] font-black outline-none transition-all placeholder:text-stone-500 uppercase tracking-widest"
+              />
+              <button onClick={saveToCloud} title="Uložiť plán do cloudu" className="h-9 px-2 sm:px-3 flex-shrink-0 flex items-center gap-1 text-stone-500 bg-white border-2 border-stone-500 rounded-xl hover:text-emerald-800 transition-colors text-[10px] font-bold whitespace-nowrap">
+                <i className="fas fa-cloud-arrow-up text-sm"></i>
+                <span className="hidden xs:inline sm:inline">ULOŽIŤ</span>
+              </button>
+              <button onClick={loadFromCloud} title="Stiahnuť plán z cloudu" className="h-9 px-2 sm:px-3 flex-shrink-0 flex items-center gap-1 text-emerald-800 bg-emerald-50 border-2 border-emerald-800 rounded-xl hover:text-stone-500 transition-colors text-[10px] font-bold whitespace-nowrap">
+                <i className="fas fa-cloud-arrow-down text-sm"></i>
+                <span className="hidden xs:inline sm:inline">STIAHNUŤ</span>
+              </button>
+              <button onClick={handleAddDay} title="Pridať deň" className="bg-stone-500 text-white w-9 h-9 flex-shrink-0 rounded-xl hover:bg-stone-800 flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+                <i className="fas fa-plus text-base"></i>
+              </button>
+            </div>
+          )}
+
+          {/* Riadok 3: Legenda kategórií */}
           {viewMode === 'grid' && (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full">
               {[
