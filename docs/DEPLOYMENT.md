@@ -1,8 +1,19 @@
-# Deployment Guide
+﻿# Deployment Guide
 
-## 📝 Standard Development & Deployment Workflow
+## Kde beží aplikácia
 
-**Po každých zmenách v kóde sa bude postupovať takto:**
+| Časť | Platforma | URL |
+|------|-----------|-----|
+| Frontend (React SPA) | **GitHub Pages** | https://pjetko-dotcom.github.io/matica-ro-c-k/ |
+| Backend (REST API) | **Render.com** (free tier) | https://matica-rock-backend.onrender.com |
+
+> **GitHub Pages** servuje statické súbory z `gh-pages` branche. **Render.com** spúšťa Node.js/Express server definovaný v `api-server/server.ts` podľa `render.yaml`.
+
+---
+
+## Štandardný workflow pre nasadenie zmien
+
+**Po každých zmenách v kóde:**
 
 ```bash
 # 1. Urob zmeny v App.tsx, components, styles, atď.
@@ -23,90 +34,105 @@ git subtree push --prefix dist origin gh-pages
 # https://pjetko-dotcom.github.io/matica-ro-c-k/
 ```
 
-**Pozor:** Nikdy nemaž lokálne súbory pri switchovaní branches! Git to odišť samo (pozri [DEVELOPMENT.md](./DEVELOPMENT.md#-important---git-workflow))
+**Pozor:** Nikdy nemaž lokálne súbory pri switchovaní branches! Git to odíde samo.
 
 ---
 
-## GitHub Pages Deployment
+## GitHub Pages (Frontend)
 
 Aplikácia je nasadená na GitHub Pages na adrese: **https://pjetko-dotcom.github.io/matica-ro-c-k/**
 
 ### Ako funguje
 
-1. **main** branch - obsahuje source code (App.tsx, components, utils, atď.)
-2. **gh-pages** branch - obsahuje iba skompilovane súbory z `dist/` zložky
+1. **`main` branch** – obsahuje zdrojový kód (App.tsx, components, utils, atď.)
+2. **`gh-pages` branch** – obsahuje iba skompilované súbory z `dist/` zložky
 
-GitHub Pages automaticky servuje obsah z `gh-pages` vetvi.
+GitHub Pages automaticky servuje obsah z `gh-pages` vetvy.
 
-### Deploy Process
+### Vite konfigurácia pre GitHub Pages
+
+V `vite.config.ts` je nastavená `base` cesta zodpovedajúca názvu repozitára:
+
+```ts
+base: '/matica-ro-c-k/',
+```
+
+Bez tohto nastavenia by CSS a JS súbory nenašli správne cesty po nasadení.
+
+### Deploy process
 
 #### 1. Lokálne zmeny
 
 ```bash
-# Sprav zmeny v App.tsx, components, atď.
 npm run dev  # Test na localhost:3000
 ```
 
 #### 2. Build
 
 ```bash
-# Skompiluj aplikáciu
 npm run build
-
 # Výstup: dist/ zložka s index.html a assets/
 ```
 
-#### 3. Git workflow
+#### 3. Commitni zdrojový kód
 
 ```bash
-# Commitni zmeny v main
 git add .
-git commit -m "Feature: Add something cool"
+git commit -m "feat: popis zmeny"
 git push origin main
 ```
 
 #### 4. Deploy na GitHub Pages
 
 ```bash
-# Prejdi na main
-git checkout main
+# Možnosť A: git subtree (odporúčané)
+git subtree push --prefix dist origin gh-pages
 
-# Vytvor orphan gh-pages vetev (alebo aktualizuj existujúcu)
+# Možnosť B: manuálne (ak subtree nefunguje)
 git checkout --orphan gh-pages
-
-# Vymaž všetko
 git rm -rf .
-
-# Kopíruj dist súbory
 Copy-Item -Path "dist\*" -Destination "." -Recurse -Force
 Remove-Item "dist" -Recurse -Force
-
-# Commitni
 git add .
 git commit -m "Deploy to GitHub Pages"
-
-# Pushni s force
 git push -f origin gh-pages
-
-# Vráť sa na main
 git checkout main
 ```
 
-**Alebo jednoduchší spôsob:**
+---
 
-```bash
-# Ak máš gh-pages vetev, len aktualizuj dist na nej:
-git checkout gh-pages
-git merge main --no-commit --no-ff
-git rm -rf .
-Copy-Item -Path "dist\*" -Destination "." -Recurse -Force
-git add .
-git commit -m "Rebuild and deploy"
-git push origin gh-pages
-git checkout main
+## Render.com (Backend)
+
+Backend je definovaný cez `render.yaml` v koreni repozitára. Render.com ho číta automaticky pri pripojení repozitára.
+
+### `render.yaml`
+
+```yaml
+services:
+  - type: web
+    name: matica-rock-backend
+    runtime: node
+    buildCommand: cd api-server && npm install
+    startCommand: cd api-server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
 ```
 
-### CI/CD (budúcnosť)
+### Čo robí backend
+
+- `buildCommand`: nainštaluje závislosti v `api-server/`
+- `startCommand`: spustí Express server (`api-server/server.ts`)
+- Server počúva na porte z `process.env.PORT` (Render.com ho nastavuje automaticky)
+- Dáta ukladá na disk do `api-server/data/{code}.json`
+
+### Upozornenie – cold start
+
+Render.com free tier "zaspieva" (uspí server) po **15 minútach nečinnosti**. Pri prvom requeste po pauze môže byť oneskorenie **20–60 sekúnd**. Toto je normálne správanie free tieru.
+
+---
+
+## CI/CD (budúcnosť)
 
 Možné nastaviť **GitHub Actions** pre automatický deployment:
 
@@ -123,7 +149,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: "18"
       - run: npm install && npm run build
       - uses: peaceiris/actions-gh-pages@v3
         with:
@@ -131,24 +157,31 @@ jobs:
           publish_dir: ./dist
 ```
 
-### Troubleshooting
+---
 
-**Problem:** GitHub Pages ukazuje iba pozadie, žiadny obsah
+## Troubleshooting
 
-**Solution:**
+**Problém:** GitHub Pages ukazuje iba pozadie, žiadny obsah
+
+**Riešenie:**
 1. Skontroluj, či `gh-pages` branch má len `index.html` a `assets/` zložku
 2. Refreshni cache: Ctrl+Shift+R
-3. Čakaj 1-2 minúty na rebuild
-4. Skontroluj v Chrome DevTools console na chyby
+3. Čakaj 1–2 minúty na rebuild
+4. Skontroluj v Chrome DevTools console
 
-**Problem:** CSS/JS nevie nájsť
+**Problém:** CSS/JS nenájdu cestu
 
-**Solution:** 
-- Skontroluj [vite.config.ts](../vite.config.ts) - `base: '/matica-ro-c-k/'` musí byť správny
+**Riešenie:** Skontroluj `vite.config.ts` – `base: '/matica-ro-c-k/'` musí zodpovedať názvu repozitára
 
-### Tabuľka Verzií
+**Problém:** Cloud sync nefunguje / timeout
+
+**Riešenie:** Backend je pravdepodobne zaspatý (cold start). Počkaj 30–60 sekúnd a skús znova.
+
+---
+
+## Verzie nasadenia
 
 | Verzia | Dátum | Zmeny |
 |--------|-------|-------|
 | 1.0.0 | 10.2.2026 | Initial GitHub Pages deployment |
-
+| 1.1.0 | 26.2.2026 | Aktualizácia dokumentácie, pridanie Render.com sekcie |

@@ -1,14 +1,15 @@
-# 📚 Matica RO(C)K - Dokumentácia
+# Matica RO(C)K – Dokumentácia
 
 Vitaj v dokumentácii! Tu nájdeš všetko čo potrebuješ na začiatok, vývoj a deployment.
 
-## 🚀 Rýchly Úvod
+## Rýchly úvod
 
-**Čo to je?** Scout staff timetable planner - aplikácia na plánovanie harmonogramu skautských táborov.
+**Čo to je?** Webová aplikácia pre skautov na plánovanie harmonogramu tábora s live kiosk modom a cloud synchronizáciou.
 
-**Kde to vidieť?** https://pjetko-dotcom.github.io/matica-ro-c-k/
+**Frontend:** https://pjetko-dotcom.github.io/matica-ro-c-k/ (GitHub Pages)  
+**Backend API:** https://matica-rock-backend.onrender.com (Render.com)
 
-**Ako to spustim?**
+**Ako spustiť lokálne:**
 ```bash
 npm install
 npm run dev
@@ -17,38 +18,39 @@ npm run dev
 
 ---
 
-## 📖 Dokumentácia podľa Cieľu
+## Dokumentácia podľa cieľu
 
-### 👨‍💼 Pre Vedúcich/Správcov
-- [README.md](../README.md) - Čo je to Matica RO(C)K
-- [CHANGELOG.md](CHANGELOG.md) - Čo sa zmenilo
+### Pre vedúcich / správcov
+- [README.md](../README.md) – Čo je to Matica RO(C)K
+- [CHANGELOG.md](CHANGELOG.md) – Čo sa zmenilo
 
-### 👨‍💻 Pre Vývojárov
-- [DEVELOPMENT.md](DEVELOPMENT.md) - Lokálny setup a development
-- [architecture.md](architecture.md) - Technická štruktúra
-- [DEPLOYMENT.md](DEPLOYMENT.md) - Ako nasadiť na GitHub Pages
+### Pre vývojárov
+- [DEVELOPMENT.md](DEVELOPMENT.md) – Lokálny setup a development
+- [architecture.md](architecture.md) – Technická architektúra, dátové modely, deployment diagram
+- [COMPONENTS.md](COMPONENTS.md) – Popis všetkých komponentov, state, props
+- [API.md](API.md) – REST API endpointy, Render.com backend, porovnanie s Vercel variantom
+- [DEPLOYMENT.md](DEPLOYMENT.md) – Nasadenie na GitHub Pages + Render.com
 
-### 🤝 Pre Prispievateľov
-- [CONTRIBUTING.md](CONTRIBUTING.md) - Ako prispievať
-- [architecture.md](architecture.md) - Ako funguje code
+### Pre prispievateľov
+- [CONTRIBUTING.md](CONTRIBUTING.md) – Ako prispievať
 
 ---
 
-## 📁 Štruktúra Dokumentácie
+## Štruktúra dokumentácie
 
-| Súbor | Určenie |
-|-------|---------|
-| [INDEX.md](INDEX.md) | 👈 Táto stránka - Navigácia |
+| Súbor | Popis |
+|-------|-------|
+| [INDEX.md](INDEX.md) | Táto stránka – navigácia |
+| [architecture.md](architecture.md) | Architektúra systému, dátové modely, UI stack |
+| [COMPONENTS.md](COMPONENTS.md) | Detailný popis komponentov, state, funkcie |
+| [API.md](API.md) | REST API dokumentácia, backend na Render.com |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | GitHub Pages + Render.com deployment guide |
 | [DEVELOPMENT.md](DEVELOPMENT.md) | Setup, project structure, development tips |
-| [DEPLOYMENT.md](DEPLOYMENT.md) | GitHub Pages deployment process |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Ako prispievať do projektu |
-| [architecture.md](architecture.md) | Technická architektúra, dátové modely |
 | [CHANGELOG.md](CHANGELOG.md) | História verzií a zmien |
 | [README.md](../README.md) | Úvodný README v root |
 
----
-
-## 🛠️ Základné Príkazy
+---## 🛠️ Základné Príkazy
 
 ```bash
 # Development
