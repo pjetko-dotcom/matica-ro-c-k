@@ -2,6 +2,21 @@
 
 Všetky významné zmeny v tomto projekte sú dokumentované v tomto súbore.
 
+## [2.1.0] - 2026-02-27
+
+### Added
+- 🗜️ Manuálny collapse headera – tlačidlo `^` v pravom rohu hlavičky
+  - Po kliknutí skryje sync panel, legendu kategórií a prepínač Matica/Práve prebieha
+  - Stav sa pamätá v `localStorage` (pretrváva medzi načítaniami stránky)
+  - Plynulá CSS animácia (max-height transition 300ms)
+  - V live režime zostane viditeľný čas aj po collapse
+  - Riešenie pre mobile landscape, kde header zaberá väčšinu výšky displeja
+
+### Changed
+- Ikona `fa-chevron-up` sa otočí o 180° keď je header collapsed (vizuálna spätná väzba)
+
+---
+
 ## [2.0.0] - 2026-02-26
 
 ### Changed

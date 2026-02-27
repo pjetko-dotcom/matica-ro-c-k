@@ -58,6 +58,16 @@ const App: React.FC = () => {
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [viewMode, setViewMode] = useState<'grid' | 'live'>('grid');
+  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState<boolean>(
+    localStorage.getItem('scout_header_collapsed') === 'true'
+  );
+
+  const toggleHeader = () => {
+    setIsHeaderCollapsed(prev => {
+      localStorage.setItem('scout_header_collapsed', String(!prev));
+      return !prev;
+    });
+  };
   
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
   const [isPostponeModalOpen, setIsPostponeModalOpen] = useState(false);
@@ -300,7 +310,7 @@ const App: React.FC = () => {
       <div className={`${viewMode === 'grid' ? 'max-w-4xl' : 'max-w-6xl'} mx-auto relative min-h-screen flex flex-col transition-all duration-700 px-3 sm:px-6`}>
         
         <header className="sticky top-0 z-50 glass-effect px-4 pt-4 pb-3 sm:px-5 sm:pt-5 sm:pb-4 flex flex-col gap-3 rounded-b-[2.5rem] shadow-xl border-b-2 border-stone-200/30">
-          {/* Riadok 1: Logo + view-mode live clock */}
+          {/* Riadok 1: Logo + collapse toggle + live clock */}
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 flex-shrink-0">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-tr from-emerald-900 to-green-700 rounded-2xl flex items-center justify-center text-white shadow-2xl animate-sway text-xl sm:text-2xl">
@@ -311,18 +321,35 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {viewMode === 'live' && (
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-2xl flex items-center justify-center text-emerald-800 bg-emerald-50 border border-emerald-100">
-                  <i className="fas fa-clock text-lg"></i>
+            <div className="flex items-center gap-2 ml-auto">
+              {viewMode === 'live' && !isHeaderCollapsed && (
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-xl flex items-center justify-center text-emerald-800 bg-emerald-50 border border-emerald-100">
+                    <i className="fas fa-clock"></i>
+                  </div>
+                  <div className="font-black text-xl tabular-nums">
+                    {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </div>
                 </div>
-                <div className="font-black text-xl tabular-nums">
+              )}
+              {viewMode === 'live' && isHeaderCollapsed && (
+                <div className="font-black text-lg tabular-nums text-emerald-800">
                   {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </div>
-              </div>
-            )}
+              )}
+              {/* Collapse toggle */}
+              <button
+                onClick={toggleHeader}
+                title={isHeaderCollapsed ? 'Rozbaliť hlavičku' : 'Zbaliť hlavičku'}
+                className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-xl border-2 border-stone-300 text-stone-400 hover:text-emerald-800 hover:border-emerald-800 transition-all"
+              >
+                <i className={`fas fa-chevron-up text-xs transition-transform duration-300 ${isHeaderCollapsed ? 'rotate-180' : ''}`}></i>
+              </button>
+            </div>
           </div>
 
+          {/* Collapsible sekcia */}
+          <div className={`flex flex-col gap-3 overflow-hidden transition-all duration-300 ${isHeaderCollapsed ? 'max-h-0 opacity-0 pointer-events-none' : 'max-h-96 opacity-100'}`}>
           {/* Riadok 2: Sync panel – plná šírka na mobile */}
           {viewMode === 'grid' && (
             <div className="flex items-center gap-2 w-full">
@@ -376,6 +403,7 @@ const App: React.FC = () => {
               Práve Prebieha
             </button>
           </div>
+          </div> {/* /collapsible */}
         </header>
 
         <div className="flex-grow pt-10">

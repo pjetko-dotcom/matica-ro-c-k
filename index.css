@@ -2,8 +2,6 @@
 
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* ── CSS premenné ───────────────────────────────────────────────────────── */
 :root {
   --nature-green: #2d5a27;
@@ -185,5 +183,5 @@ html.dark ::-webkit-scrollbar-thumb {
 }
 
 html.dark * {
-  border-color-opacity: 1;
+  border-color: rgba(58, 74, 63, 1);
 }
