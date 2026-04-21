@@ -24,7 +24,10 @@ body {
   position: relative;
 }
 
-/* ── Glass efekt ────────────────────────────────────────────────────────── */
+/* ── Font Awesome width auto (v6 compatibility) ─────────────────────── */
+.fas, .far, .fab {
+  width: auto !important;
+}
 .glass-effect {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);

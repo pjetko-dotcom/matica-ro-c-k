@@ -78,7 +78,7 @@ interface DaySchedule {
 
 ### index.html
 - **Tailwind CDN** na styling
-- **Font Awesome 6.4.0** na ikony
+- **Font Awesome 7.0.1** na ikony
 - **Custom CSS** pre dark mode, pozadie, efekty
 - **Google Fonts** - Georama font
 

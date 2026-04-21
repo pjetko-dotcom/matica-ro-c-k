@@ -19,7 +19,7 @@
 - **TypeScript 5.8.2** - Type safety
 - **Vite 6.2.0** - Build tool
 - **Tailwind CSS** - Styling
-- **Font Awesome 6.4.0** - Ikony
+- **Font Awesome 7.2.0** - Ikony
 
 ## Rýchly Start
 

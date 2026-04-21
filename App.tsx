@@ -281,16 +281,16 @@ const App: React.FC = () => {
   const getCategoryStyles = (cat: ActivityType, active: boolean) => {
     switch (cat) {
       case ActivityType.LECTURE: return { 
-        bar: 'bg-emerald-800', bg: active ? 'bg-emerald-50' : 'bg-white', border: active ? 'border-emerald-800 ring-4 ring-emerald-100 shadow-lg' : 'border-stone-100', icon: 'fa-brain', text: 'text-emerald-800', colorClass: 'from-emerald-800 to-green-950'
+        bar: 'bg-emerald-800', bg: active ? 'bg-emerald-50' : 'bg-white', border: active ? 'border-emerald-800 ring-4 ring-emerald-100 shadow-lg' : 'border-stone-100', icon: 'fa-width-auto fa-brain', text: 'text-emerald-800', colorClass: 'from-emerald-800 to-green-950'
       };
       case ActivityType.PROGRAM: return { 
-        bar: 'bg-sky-800', bg: active ? 'bg-sky-50' : 'bg-white', border: active ? 'border-sky-800 ring-4 ring-sky-100 shadow-lg' : 'border-stone-100', icon: 'fa-dice-d6', text: 'text-sky-800', colorClass: 'from-sky-800 to-blue-900'
+        bar: 'bg-sky-800', bg: active ? 'bg-sky-50' : 'bg-white', border: active ? 'border-sky-800 ring-4 ring-sky-100 shadow-lg' : 'border-stone-100', icon: 'fa-width-auto fa-dice-d6', text: 'text-sky-800', colorClass: 'from-sky-800 to-blue-900'
       };
       case ActivityType.FOOD: return { 
-        bar: 'bg-amber-800', bg: active ? 'bg-amber-50' : 'bg-white', border: active ? 'border-amber-800 ring-4 ring-amber-100 shadow-lg' : 'border-stone-100', icon: 'fa-utensils', text: 'text-amber-800', colorClass: 'from-amber-800 to-stone-900'
+        bar: 'bg-amber-800', bg: active ? 'bg-amber-50' : 'bg-white', border: active ? 'border-amber-800 ring-4 ring-amber-100 shadow-lg' : 'border-stone-100', icon: 'fa-width-auto fa-utensils', text: 'text-amber-800', colorClass: 'from-amber-800 to-stone-900'
       };
       default: return { 
-        bar: 'bg-red-800', bg: active ? 'bg-pink-50' : 'bg-white', border: active ? 'border-red-800 ring-4 ring-pink-100 shadow-lg' : 'border-stone-100', icon: 'fa-heart', text: 'text-red-800', colorClass: 'from-red-800 to-stone-900'
+        bar: 'bg-red-800', bg: active ? 'bg-pink-50' : 'bg-white', border: active ? 'border-red-800 ring-4 ring-pink-100 shadow-lg' : 'border-stone-100', icon: 'fa-width-auto fa-heart', text: 'text-red-800', colorClass: 'from-red-800 to-stone-900'
       };
     }
   };
